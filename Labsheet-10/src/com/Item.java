@@ -59,11 +59,11 @@ public class Item {
 				
 				//buttons
 				output += "<td>"
-							+"<input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'>"
+							+"<input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' data-itemid='"+itemID+"'>"
 							+"</td>"+ 
-							"<td><form method='post' action='Items.jsp'>"+ 
+							"<td>"+ 
 							"<input name='btnRemove' type='submit' value='Remove'  class='btn btn-danger'>"+ 
-							"<input name='hidItemIDDelete' type='hidden' value='" + itemID+ "'>" + "</form></td></tr>";
+							"</td></tr>";
 			}
 			//database connection is closed.
 			con.close();
