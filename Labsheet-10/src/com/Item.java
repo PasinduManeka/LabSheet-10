@@ -103,13 +103,15 @@ public class Item {
 			pdstm.executeUpdate();
 			con.setAutoCommit(false);
 			con.commit();
-			output="Inserted successfully";
-			
+			con.close();
+			//output="Inserted successfully";
+			String newItems = readItems();
+			output ="{\"status\":\"success\", \"data\":\""+newItems+"\"}";
 			
 			
 		}catch(Exception e) {
-			output ="Error while inserting the data";
-			System.err.append("This is the error in insert:"+e.getMessage());
+			output ="{\"status\":\"error\", \"data\":\"Error while inserting item.\"}";
+			System.err.print("This is the error in insert:"+e.getMessage());
 		}
 		//response.sendRedirect("confirmpage.jsp");
 		return output;
@@ -141,12 +143,13 @@ public class Item {
 			pd.executeUpdate();
 			con.setAutoCommit(false);
 			con.commit();
-			output="Updated successfuly";
+			//output="Updated successfuly";
 			
-			
+			String newItems = readItems();
+			output ="{\"status\":\"success\", \"data\":\""+newItems+"\"}";
 			
 		}catch(Exception e) {
-			output= "Error while updating the item details.";
+			output= "{\"status\":\"error\", \"data\":\"Error while updating the item.\"}";
 			System.err.println("This is the error in update:"+e.getMessage());
 		}
 		
@@ -157,9 +160,6 @@ public class Item {
 		String output="";
 		try {
 			//Check database connection
-			
-			
-			
 			Connection con =connect();
 			if(con == null) {
 				return "Error while connecting to the database for delete.";
@@ -177,12 +177,13 @@ public class Item {
 			pd.executeUpdate();
 			con.setAutoCommit(false);
 			con.commit();
-			output="Deleted Successfilly.";
+			//output="Deleted Successfilly.";
 			
-			
+			String newItems = readItems();
+			output ="{\"status\":\"success\", \"data\":\""+newItems+"\"}";
 			
 		}catch(Exception e) {
-			output = "Error while deleting items.";
+			output= "{\"status\":\"error\", \"data\":\"Error while u the item.\"}";
 			System.err.print("This is the error in deleting:"+e.getMessage());
 		}
 		return output;
