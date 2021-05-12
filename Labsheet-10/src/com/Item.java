@@ -62,7 +62,7 @@ public class Item {
 							+"<input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' data-itemid='"+itemID+"'>"
 							+"</td>"+ 
 							"<td>"+ 
-							"<input name='btnRemove' type='submit' value='Remove'  class='btn btn-danger'>"+ 
+							"<input name='btnRemove' type='submit' value='Remove'  class='btnRemove btn btn-danger' data-itemid='"+itemID+"'>"+ 
 							"</td></tr>";
 			}
 			//database connection is closed.
