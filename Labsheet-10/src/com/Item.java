@@ -51,7 +51,7 @@ public class Item {
 				String itemDesc = rs.getString("description");
 				
 				//add into HTML table
-				output += "<tr><td><input type='hidden' id='hidItemIDUpdate' name='hidItemIDUpdate' value='"+itemID+"'>"+itemID+"</td>";
+				output += "<tr><td>"+itemID+"</td>";
 				output += "<td>" + itemCode + "</td>"; 
 				output += "<td>" + itemName + "</td>"; 
 				output += "<td>" + itemPrice + "</td>"; 
