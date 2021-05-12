@@ -96,7 +96,7 @@
 		Item itDelete = new Item();
 		System.out.print(request.getParameter("hidItemIDDelete"));
 		String stsMsg="";
-		stsMsg = it.deleteItem(request.getParameter("hidItemIDDelete"));
+		stsMsg = itDelete.deleteItem(request.getParameter("hidItemIDDelete"));
 		//stsMsg=it.deleteItem(request.getParameter("hidItemIDDelete"));
 		
 		session.setAttribute("statusMsg", stsMsg);
