@@ -63,7 +63,7 @@ public class Item {
 							+"</td>"+ 
 							"<td><form method='post' action='Items.jsp'>"+ 
 							"<input name='btnRemove' type='submit' value='Remove'  class='btn btn-danger'>"+ 
-							"<input name='itemID' type='hidden' value='" + itemID+ "'>" + "</form></td></tr>";
+							"<input name='hidItemIDDelete' type='hidden' value='" + itemID+ "'>" + "</form></td></tr>";
 			}
 			//database connection is closed.
 			con.close();
@@ -126,6 +126,7 @@ public class Item {
 				return "Error while connectintg to the database for update the records.";
 			}
 			
+			//sql query
 			String sql = "update product set code=? , name=?, price=?, description=? where id=? ";
 			PreparedStatement pd = con.prepareStatement(sql);
 			
@@ -149,6 +150,37 @@ public class Item {
 			System.err.println("This is the error in update:"+e.getMessage());
 		}
 		
+		return output;
+	}
+	
+	public String deleteItem(String id) {
+		String output="";
+		try {
+			//Check database connection
+			Connection con =connect();
+			if(con != null) {
+				return "Error while connecting to the database for delete.";
+			}
+			
+			//create prepared statement
+			String query = "delete from product where id=?";
+			PreparedStatement pd = con.prepareStatement(query);
+			
+			//binding values
+			pd.setInt(1, Integer.parseInt(id));
+			
+			//execute the statement
+			pd.executeUpdate();
+			con.setAutoCommit(false);
+			con.commit();
+			output="Deleted Successfilly.";
+			
+			
+			
+		}catch(Exception e) {
+			output = "Error while deleting items.";
+			System.err.print("This is the error in deleting:"+e.getMessage());
+		}
 		return output;
 	}
 	
