@@ -56,52 +56,7 @@
 	</div>
 	<!-- end the card  -->
 	
-	<%
-	//System.out.println(request.getParameter("code"));
-	//System.out.println(request.getParameter("name"));
-	//System.out.println(request.getParameter("price"));
-	//System.out.println(request.getParameter("description"));
-	if(request.getParameter("code")!= null){
-		String 	stsMsg = "";
-		//System.out.println(request.getParameter("code"));
-		//Save ==================================== 
-		if(request.getParameter("hidIDItemIDSave") == ""){
-			stsMsg = it.inserItem(request.getParameter("code"), request.getParameter("name"), request.getParameter("price"), request.getParameter("description"));
-			System.out.println(stsMsg);
-			/*stsMsg = it.insertIte(request.getParameter("code"),  */
-					//request.getParameter("name"), request.getParameter("price"), 
-					//request.getParameter("description"));
-			
-			
-		}
-		else{
-			//update ==============
-			stsMsg = it.updateItem(request.getParameter("hidIDItemIDSave"), request.getParameter("code"), request.getParameter("name"), request.getParameter("price"), request.getParameter("description"));
-			System.out.println(stsMsg);
-		}
-		//convert to null
-		request.getParameter("hidIDItemIDSave").contentEquals("");
-		request.getParameter("name").contentEquals("");
-		request.getParameter("code").contentEquals("");
-		request.getParameter("price").contentEquals("");
-		request.getParameter("description").contentEquals("");
-		
-		session.setAttribute("statusMsg", stsMsg);
-		
-		
-		
-	}
-	//Delete
-	if(request.getParameter("hidItemIDDelete") != null){
-		Item itDelete = new Item();
-		System.out.print(request.getParameter("hidItemIDDelete"));
-		String stsMsg="";
-		stsMsg = itDelete.deleteItem(request.getParameter("hidItemIDDelete"));
-		//stsMsg=it.deleteItem(request.getParameter("hidItemIDDelete"));
-		
-		session.setAttribute("statusMsg", stsMsg);
-	}
-	%>
+	
 	
 </body>
 </html>
