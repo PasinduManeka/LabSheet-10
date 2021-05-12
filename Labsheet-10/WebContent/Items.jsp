@@ -57,13 +57,13 @@
 	<!-- end the card  -->
 	
 	<%
-	System.out.println(request.getParameter("code"));
-	System.out.println(request.getParameter("name"));
-	System.out.println(request.getParameter("price"));
-	System.out.println(request.getParameter("description"));
+	//System.out.println(request.getParameter("code"));
+	//System.out.println(request.getParameter("name"));
+	//System.out.println(request.getParameter("price"));
+	//System.out.println(request.getParameter("description"));
 	if(request.getParameter("code")!= null){
 		String 	stsMsg = "";
-		System.out.println(request.getParameter("code"));
+		//System.out.println(request.getParameter("code"));
 		//Save ==================================== 
 		if(request.getParameter("hidIDItemIDSave") == ""){
 			stsMsg = it.inserItem(request.getParameter("code"), request.getParameter("name"), request.getParameter("price"), request.getParameter("description"));
@@ -93,8 +93,11 @@
 	}
 	//Delete
 	if(request.getParameter("hidItemIDDelete") != null){
+		Item itDelete = new Item();
+		System.out.print(request.getParameter("hidItemIDDelete"));
 		String stsMsg="";
-		stsMsg=it.deleteItem(request.getParameter("hidItemIDDelete"));
+		stsMsg = it.deleteItem(request.getParameter("hidItemIDDelete"));
+		//stsMsg=it.deleteItem(request.getParameter("hidItemIDDelete"));
 		
 		session.setAttribute("statusMsg", stsMsg);
 	}
