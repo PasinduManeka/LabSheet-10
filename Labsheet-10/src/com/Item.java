@@ -157,10 +157,14 @@ public class Item {
 		String output="";
 		try {
 			//Check database connection
+			
+			
+			
 			Connection con =connect();
-			if(con != null) {
+			if(con == null) {
 				return "Error while connecting to the database for delete.";
 			}
+			System.out.println(id);
 			
 			//create prepared statement
 			String query = "delete from product where id=?";
