@@ -79,15 +79,24 @@
 			stsMsg = it.updateItem(request.getParameter("hidIDItemIDSave"), request.getParameter("code"), request.getParameter("name"), request.getParameter("price"), request.getParameter("description"));
 			System.out.println(stsMsg);
 		}
+		//convert to null
 		request.getParameter("hidIDItemIDSave").contentEquals("");
 		request.getParameter("name").contentEquals("");
 		request.getParameter("code").contentEquals("");
 		request.getParameter("price").contentEquals("");
 		request.getParameter("description").contentEquals("");
+		
 		session.setAttribute("statusMsg", stsMsg);
 		
 		
 		
+	}
+	//Delete
+	if(request.getParameter("hidItemIDDelete") != null){
+		String stsMsg="";
+		stsMsg=it.deleteItem(request.getParameter("hidItemIDDelete"));
+		
+		session.setAttribute("statusMsg", stsMsg);
 	}
 	%>
 	
