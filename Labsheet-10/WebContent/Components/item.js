@@ -50,7 +50,7 @@ $(document).on("click", "#bntSave", function(event){
 	}
 	
 	//if valid
-	var type=($("hidIDItemIDSave").val()=="") ? "post" : "put";
+	var type=($("#hidIDItemIDSave").val()=="") ? "post" : "put";
 	$.ajax({
 		url : "ItemApi",
 		type : type,
@@ -104,7 +104,46 @@ $(document).on("click",".btnUpdate", function(event){
 	
 });
 
+//Delete
+$document.on("click", ".btnRemove", function(event){
+	$.ajax({
+		url : "ItemApi",
+		type : "DELETE",
+		data : "id"+$(this).data("itemid"),
+		dataType : "text",
+		complete : function(respnose, status){
+			onItemDeleteComplete(response.responseText, status);
+		}
+			
+	});
+});
 
+
+
+function onItemDeleteComplete(response, status){
+	
+	if(status == "success"){
+		var resultSet = JSON.parse(response);
+		
+		if(resultSet.status.trim() == "success"){
+			$("#alertSuccess").text("Successfully deletd.");
+			$("#alertSuccess").show();
+			
+			$("#colItem").html(resultSet.data);
+		}else if(resultSet.status.trim() == "error"){
+			$("#alertDanger").text(resultSet.data)
+			$("#alertDanger").show();
+		}
+	}else if(status == "error"){
+		$("#alertDanger").text("Error while deleting.");
+		$("#alertDanger").show();
+	}else{
+		$("#alertDanger").text("Unknown error while deleting.");
+		$("#alertDanger").show();
+	}
+	//$("#hidIDItemIDSave").val("");
+	$("#formItem")[0].reset();
+}
 
 
 
