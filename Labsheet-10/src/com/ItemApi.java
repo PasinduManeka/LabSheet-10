@@ -67,7 +67,7 @@ public class ItemApi extends HttpServlet {
 		Item itObjDelete  = new Item();
 		Map paras = getParasMap(request);
 		
-		String output = itObjDelete.deleteItem(paras.get("itemID").toString());
+		String output = itObjDelete.deleteItem(paras.get("id").toString());
 		response.getWriter().write(output);
 		
 		
