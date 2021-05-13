@@ -105,14 +105,14 @@ $(document).on("click",".btnUpdate", function(event){
 });
 
 //Delete
-$document.on("click", ".btnRemove", function(event){
+$(document).on("click", ".btnRemove", function(event){
 	$.ajax({
 		url : "ItemApi",
 		type : "DELETE",
-		data : "id"+$(this).data("itemid"),
+		data : "id="+$(this).data("itemid"),
 		dataType : "text",
 		complete : function(respnose, status){
-			onItemDeleteComplete(response.responseText, status);
+			onItemDeleteComplete(respnose.responseText, status);
 		}
 			
 	});
