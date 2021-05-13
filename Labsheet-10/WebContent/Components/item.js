@@ -50,13 +50,49 @@ $(document).on("click", "#bntSave", function(event){
 	}
 	
 	//if valid
-	$("#formItem").submit();
+	var type=($("hidIDItemIDSave").val()=="") ? "post" : "put";
+	$.ajax({
+		url : "ItemApi",
+		type : type,
+		data : $("#formItem").serialize(),
+		dataType : "text",
+		complete : function(response, status){
+			onItemSaveComplete(response.responseText, status);
+		}
+		
+	});
+	//$("#formItem").submit();
 	/*var item = java();
 	$("#colItem").append(item);*/
-	$("#formItem")[0].reset();
+	//$("#formItem")[0].reset();
 	
 	
 });
+
+function onItemSaveComplete(response, status){
+	
+	if(status == "success"){
+		var resultSet = JSON.parse(response);
+		
+		if(resultSet.status.trim() == "success"){
+			$("#alertSuccess").text("Successfully saved.");
+			$("#alertSuccess").show();
+			
+			$("#colItem").html(resultSet.data);
+		}else if(resultSet.status.trim() == "error"){
+			$("#alertDanger").text(resultSet.data)
+			$("#alertDanger").show();
+		}
+	}else if(status == "error"){
+		$("#alertDanger").text("Error while saving.");
+		$("#alertDanger").show();
+	}else{
+		$("#alertDanger").text("Unknown error while saving.");
+		$("#alertDanger").show();
+	}
+	$("#hidIDItemIDSave").val("");
+	$("#formItem")[0].reset();
+}
 
 //update
 $(document).on("click",".btnUpdate", function(event){
