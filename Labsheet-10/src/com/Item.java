@@ -62,7 +62,7 @@ public class Item {
 							+"<input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' data-itemid='"+itemID+"'>"
 							+"</td>"+ 
 							"<td>"+ 
-							"<input name='btnRemove' type='submit' value='Remove'  class='btnRemove btn btn-danger' data-itemid='"+itemID+"'>"+ 
+							"<input name='btnRemove' type='button' value='Remove'  class='btnRemove btn btn-danger' data-itemid='"+itemID+"'>"+ 
 							"</td></tr>";
 			}
 			//database connection is closed.
@@ -160,7 +160,7 @@ public class Item {
 		String output="";
 		try {
 			//Check database connection
-			Connection con =connect();
+			Connection con = connect();
 			if(con == null) {
 				return "Error while connecting to the database for delete.";
 			}
@@ -183,7 +183,7 @@ public class Item {
 			output ="{\"status\":\"success\", \"data\":\""+newItems+"\"}";
 			
 		}catch(Exception e) {
-			output= "{\"status\":\"error\", \"data\":\"Error while u the item.\"}";
+			output= "{\"status\":\"error\", \"data\":\"Error while deleting the item.\"}";
 			System.err.print("This is the error in deleting:"+e.getMessage());
 		}
 		return output;
